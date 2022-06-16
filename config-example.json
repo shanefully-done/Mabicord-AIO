@@ -1,12 +1,13 @@
 {
 	"prefix": "!",
-	"token": "",
-	"owner": "",
-	"client_id": "",
-	"test_guild_id": "",
-	"channel_log": "",
-	"channel_alert": "",
-	"channel_raid": "",
-	"device_address": "",
+	"token": "DISCORD_SECRET_TOKEN",
+	"owner": "OWNER_ID",
+	"client_id": "CLIENT_ID",
+	"test_guild_id": "TEST_DISCORD_SERVER_ID",
+	"channel_log": "BUGLE_LOG_CHANNEL_ID",
+	"channel_alert": "BUGLE_ALERT_CHANNEL_ID",
+	"channel_raid": "RAID_LOG_CHANNEL_ID",
+	"role_raid": "RAID_ROLE_ID",
+	"device_address": "NETWORK_DEVICE_IP_ADDRESS",
 	"cap_filter": "src net 211.218.233 and ip and tcp"
 }

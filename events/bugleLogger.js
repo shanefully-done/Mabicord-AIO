@@ -4,7 +4,7 @@
  * @since 1.0.0
  */
 
-const { channel_log, channel_alert, channel_raid, device_address, cap_filter } = require("./../config.json")
+const { channel_log, channel_alert, channel_raid, role_raid, device_address, cap_filter } = require("./../config.json")
 
 module.exports = {
 	name: "ready",
@@ -110,7 +110,7 @@ module.exports = {
 							let seconds = ("0" + currDate.getSeconds()).slice(-2)
 
 							// console.log(fieldRaid)
-							channelRaid.send("```css\n[" + hours + ":" + minutes + ":" + seconds + "] " + fieldRaid + "\n```")
+							channelRaid.send("```css\n[" + hours + ":" + minutes + ":" + seconds + "] " + fieldRaid + "\n```" + "<@&" + role_raid + ">")
 						}
 					} else if (ret.info.protocol === PROTOCOL.IP.UDP) {
 						console.log("Received UDP")
