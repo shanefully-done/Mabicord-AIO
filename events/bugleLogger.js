@@ -11,6 +11,7 @@ const {
 	role_raid,
 	device_address,
 	cap_filter,
+	config,
 } = require("./../config.json")
 
 module.exports = {
@@ -71,9 +72,13 @@ module.exports = {
 
 							// console.log(bugleNick + " : " + bugleData)
 
-							channel.send(
-								"```css\n[" + hours + ":" + minutes + ":" + seconds + "] " + bugleNick + " : " + bugleData + "\n```"
-							)
+							if (config.css == true) {
+								channel.send(
+									"```css\n[" + hours + ":" + minutes + ":" + seconds + "] " + bugleNick + " : " + bugleData + "\n```"
+								)
+							} else if (config.css == false) {
+								channel.send("[" + hours + ":" + minutes + ":" + seconds + "] " + bugleNick + " : " + bugleData)
+							}
 
 							// Process user keywords
 							const keywordDB = JSON.parse(fs.readFileSync("./commands/bugle/keywordDB.json", "utf8"))
@@ -83,26 +88,43 @@ module.exports = {
 								// This only works if member has sends a message since the start of the bot
 								// as the guild member cache is not updated until the member sends a message
 								// if (guild.users.cache.has(Object.keys(keywordDB)[i])) {
-									for (let j = 0; j < Object.values(keywordDB)[i].length; j++) {
-										if (bugleData.includes(Object.values(keywordDB)[i][j]) == true) {
-											messageQueue +=
-												"```css\n[" +
-												hours +
-												":" +
-												minutes +
-												":" +
-												seconds +
-												"] " +
-												bugleNick +
-												" : " +
-												bugleData +
-												"\n```\n<@!" +
-												Object.keys(keywordDB)[i] +
-												"> - " +
-												Object.values(keywordDB)[i][j] +
-												"\n\n"
-										}
+								for (let j = 0; j < Object.values(keywordDB)[i].length; j++) {
+									if (bugleData.includes(Object.values(keywordDB)[i][j]) == true && config.css == true) {
+										messageQueue +=
+											"```css\n[" +
+											hours +
+											":" +
+											minutes +
+											":" +
+											seconds +
+											"] " +
+											bugleNick +
+											" : " +
+											bugleData +
+											"\n```\n<@!" +
+											Object.keys(keywordDB)[i] +
+											"> - " +
+											Object.values(keywordDB)[i][j] +
+											"\n\n"
+									} else if (bugleData.includes(Object.values(keywordDB)[i][j]) == true && config.css == false) {
+										messageQueue +=
+											"[" +
+											hours +
+											":" +
+											minutes +
+											":" +
+											seconds +
+											"] " +
+											bugleNick +
+											" : " +
+											bugleData +
+											" - <@!" +
+											Object.keys(keywordDB)[i] +
+											"> : " +
+											Object.values(keywordDB)[i][j] +
+											"\n\n"
 									}
+								}
 								// }
 							}
 							if (messageQueue.length != 0) {
@@ -123,20 +145,26 @@ module.exports = {
 							let seconds = ("0" + currDate.getSeconds()).slice(-2)
 
 							// console.log(fieldRaid)
-							channelRaid.send(
-								"```css\n[" +
-									hours +
-									":" +
-									minutes +
-									":" +
-									seconds +
-									"] " +
-									fieldRaid +
-									"\n```" +
-									"<@&" +
-									role_raid +
-									">"
-							)
+							if (config.css == true) {
+								channelRaid.send(
+									"```css\n[" +
+										hours +
+										":" +
+										minutes +
+										":" +
+										seconds +
+										"] " +
+										fieldRaid +
+										"\n```" +
+										"<@&" +
+										role_raid +
+										">"
+								)
+							} else if (config.css == false) {
+								channelRaid.send(
+									"[" + hours + ":" + minutes + ":" + seconds + "] " + fieldRaid + " - <@&" + role_raid + ">"
+								)
+							}
 						}
 					} else if (ret.info.protocol === PROTOCOL.IP.UDP) {
 						console.log("Received UDP")
