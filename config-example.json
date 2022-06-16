@@ -4,6 +4,7 @@
 	"owner": "OWNER_ID",
 	"client_id": "CLIENT_ID",
 	"test_guild_id": "TEST_DISCORD_SERVER_ID",
+	"guild_id": "DISCORD_SERVER_ID",
 	"channel_log": "BUGLE_LOG_CHANNEL_ID",
 	"channel_alert": "BUGLE_ALERT_CHANNEL_ID",
 	"channel_raid": "RAID_LOG_CHANNEL_ID",

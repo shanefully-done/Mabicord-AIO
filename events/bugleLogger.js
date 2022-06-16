@@ -4,7 +4,14 @@
  * @since 1.0.0
  */
 
-const { channel_log, channel_alert, channel_raid, role_raid, device_address, cap_filter } = require("./../config.json")
+const {
+	channel_log,
+	channel_alert,
+	channel_raid,
+	role_raid,
+	device_address,
+	cap_filter,
+} = require("./../config.json")
 
 module.exports = {
 	name: "ready",
@@ -13,8 +20,9 @@ module.exports = {
 	/**
 	 * @description Executes the block of code when client is ready (bot initialization)
 	 * @param {import("discord.js").Client} client Main Application Client
+	 * @param {import("discord.js").Guild} guild The Guild Object of the command.
 	 */
-	execute(client) {
+	execute(client, guild) {
 		console.log("Bugle Logger started!")
 		var Cap = require("cap").Cap
 		var decoders = require("cap").decoders
@@ -71,26 +79,31 @@ module.exports = {
 							const keywordDB = JSON.parse(fs.readFileSync("./commands/bugle/keywordDB.json", "utf8"))
 							var messageQueue = ""
 							for (let i = 0; i < Object.keys(keywordDB).length; i++) {
-								for (let j = 0; j < Object.values(keywordDB)[i].length; j++) {
-									if (bugleData.includes(Object.values(keywordDB)[i][j]) == true) {
-										messageQueue +=
-											"```css\n[" +
-											hours +
-											":" +
-											minutes +
-											":" +
-											seconds +
-											"] " +
-											bugleNick +
-											" : " +
-											bugleData +
-											"\n```\n<@!" +
-											Object.keys(keywordDB)[i] +
-											"> - " +
-											Object.values(keywordDB)[i][j] +
-											"\n\n"
+								// NOTE: Only continue if member is in the guild
+								// This only works if member has sends a message since the start of the bot
+								// as the guild member cache is not updated until the member sends a message
+								// if (guild.users.cache.has(Object.keys(keywordDB)[i])) {
+									for (let j = 0; j < Object.values(keywordDB)[i].length; j++) {
+										if (bugleData.includes(Object.values(keywordDB)[i][j]) == true) {
+											messageQueue +=
+												"```css\n[" +
+												hours +
+												":" +
+												minutes +
+												":" +
+												seconds +
+												"] " +
+												bugleNick +
+												" : " +
+												bugleData +
+												"\n```\n<@!" +
+												Object.keys(keywordDB)[i] +
+												"> - " +
+												Object.values(keywordDB)[i][j] +
+												"\n\n"
+										}
 									}
-								}
+								// }
 							}
 							if (messageQueue.length != 0) {
 								channelAlert.send(messageQueue)
@@ -110,7 +123,20 @@ module.exports = {
 							let seconds = ("0" + currDate.getSeconds()).slice(-2)
 
 							// console.log(fieldRaid)
-							channelRaid.send("```css\n[" + hours + ":" + minutes + ":" + seconds + "] " + fieldRaid + "\n```" + "<@&" + role_raid + ">")
+							channelRaid.send(
+								"```css\n[" +
+									hours +
+									":" +
+									minutes +
+									":" +
+									seconds +
+									"] " +
+									fieldRaid +
+									"\n```" +
+									"<@&" +
+									role_raid +
+									">"
+							)
 						}
 					} else if (ret.info.protocol === PROTOCOL.IP.UDP) {
 						console.log("Received UDP")
