@@ -51,7 +51,7 @@ module.exports = {
 						var fieldRaid = rcvStr.substring(rcvStr.indexOf("[채널12]")).slice(7, -11)
 
 						if (rcvStr.includes("<ALL_CHANNELS>")) {
-							if (fieldRaid == "NaN" || bugleData == "undefined" || fieldRaid == NaN || bugleData == undefined) {
+							if (bugleData == "NaN" || bugleData == "undefined" || bugleData == NaN || bugleData == undefined) {
 								return
 							}
 
@@ -99,7 +99,7 @@ module.exports = {
 
 						// Raid alert
 						if (rcvStr.includes("[채널12]")) {
-							if (fieldRaid == "NaN" || bugleData == "undefined" || fieldRaid == NaN || bugleData == undefined) {
+							if (fieldRaid == "NaN" || fieldRaid == "undefined" || fieldRaid == NaN || fieldRaid == undefined) {
 								return
 							}
 
