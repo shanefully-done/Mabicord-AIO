@@ -1,45 +1,35 @@
 {
-	"name": "discordbot-template",
-	"version": "3.2.2",
-	"description": "A modified template based on discordjs.guide to create your own discord-js based bot!",
-	"funding": "https://ko-fi.com/namanvrati",
+	"name": "Mabicord AIO",
+	"version": "0.1.0",
+	"description": "A Mabinogi Discord bot that can send bugle messages to Discord.",
 	"types": "./typings.d.ts",
 	"main": "bot.js",
 	"scripts": {
 		"start": "node bot.js",
-		"dev": "nodemon bot.js"
+		"dev": "nodemon bot.js --ignore commands/bugle/keywordDB.json"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/NamVr/DiscordBot-Template.git"
+		"url": "git+https://github.com/RixxLx/Mabicord-AIO.git"
 	},
 	"keywords": [
-		"discord-js"
+		"discord-js",
+		"mabinogi"
 	],
 	"author": {
-		"name": "Naman Vrati",
-		"url": "https://github.com/NamVr",
-		"email": "info@namanvrati.cf"
+		"name": "Shane Lx",
+		"url": "https://github.com/RixxLx",
+		"discord": "Lx#2909"
 	},
-	"contributors": [
-		{
-			"name": "Krish Garg",
-			"url": "https://github.com/KrishGarg"
-		},
-		{
-			"name": "Thomas Fournier",
-			"email": "thomas@artivain.com",
-			"url": "https://github.com/GoudronViande24"
-		}
-	],
-	"license": "ISC",
+	"license": "apache-2.0",
 	"bugs": {
-		"url": "https://github.com/NamVr/DiscordBot-Template/issues"
+		"url": "https://github.com/RixxLx/Mabicord-AIO/issues"
 	},
-	"homepage": "https://github.com/NamVr/DiscordBot-Template#readme",
+	"homepage": "https://github.com/RixxLx/Mabicord-AIO",
 	"dependencies": {
 		"@discordjs/builders": "^0.15.0",
 		"@discordjs/rest": "^0.5.0",
+		"cap": "^0.2.1",
 		"discord-api-types": "^0.33.5",
 		"discord.js": "^13.8.0"
 	},

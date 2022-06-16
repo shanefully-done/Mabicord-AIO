@@ -13,6 +13,6 @@ module.exports = {
 	// Refer to typings.d.ts for available properties.
 
 	execute(message, args) {
-		message.channel.send({ content: "Pong." });
+		message.channel.send({ content: "Pong." })
 	},
-};
+}

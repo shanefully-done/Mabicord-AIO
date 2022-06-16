@@ -1,5 +1,6 @@
 # Custom
-/config.json
+config.json
+.archive/
 .vscode/
 
 # Logs

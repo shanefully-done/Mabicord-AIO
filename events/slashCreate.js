@@ -11,33 +11,33 @@ module.exports = {
 	/**
 	 * @description Executes when an interaction is created and handle it.
 	 * @author Naman Vrati
-	 * @param {import('discord.js').CommandInteraction & { client: import('../typings').Client }} interaction The interaction which was created
+	 * @param {import("discord.js").CommandInteraction} interaction The interaction which was created
 	 */
 
 	async execute(interaction) {
 		// Deconstructed client from interaction object.
-		const { client } = interaction;
+		const { client } = interaction
 
 		// Checks if the interaction is a command (to prevent weird bugs)
 
-		if (!interaction.isCommand()) return;
+		if (!interaction.isCommand()) return
 
-		const command = client.slashCommands.get(interaction.commandName);
+		const command = client.slashCommands.get(interaction.commandName)
 
 		// If the interaction is not a command in cache.
 
-		if (!command) return;
+		if (!command) return
 
 		// A try to executes the interaction.
 
 		try {
-			await command.execute(interaction);
+			await command.execute(interaction)
 		} catch (err) {
-			console.error(err);
+			console.error(err)
 			await interaction.reply({
-				content: "There was an issue while executing that command!",
+				content: "해당 명령어를 실행하는데에 에러가 발생했습니다.",
 				ephemeral: true,
-			});
+			})
 		}
 	},
-};
+}

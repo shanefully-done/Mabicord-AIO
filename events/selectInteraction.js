@@ -11,39 +11,39 @@ module.exports = {
 	/**
 	 * @description Executes when an interaction is created and handle it.
 	 * @author Naman Vrati
-	 * @param {import('discord.js').SelectMenuInteraction & { client: import('../typings').Client }} interaction The interaction which was created
+	 * @param {import("discord.js").SelectMenuInteraction} interaction The interaction which was created
 	 */
 
 	async execute(interaction) {
 		// Deconstructed client from interaction object.
-		const { client } = interaction;
+		const { client } = interaction
 
 		// Checks if the interaction is a select menu interaction (to prevent weird bugs)
 
-		if (!interaction.isSelectMenu()) return;
+		if (!interaction.isSelectMenu()) return
 
-		const command = client.selectCommands.get(interaction.customId);
+		const command = client.selectCommands.get(interaction.customId)
 
 		// If the interaction is not a command in cache, return error message.
 		// You can modify the error message at ./messages/defaultSelectError.js file!
 
 		if (!command) {
-			await require("../messages/defaultSelectError").execute(interaction);
-			return;
+			await require("../messages/defaultSelectError").execute(interaction)
+			return
 		}
 
 		// A try to execute the interaction.
 
 		try {
-			await command.execute(interaction);
-			return;
+			await command.execute(interaction)
+			return
 		} catch (err) {
-			console.error(err);
+			console.error(err)
 			await interaction.reply({
-				content: "There was an issue while executing that select menu option!",
+				content: "해당 선택 메뉴를 실행하는데에 에러가 발생했습니다.",
 				ephemeral: true,
-			});
-			return;
+			})
+			return
 		}
 	},
-};
+}

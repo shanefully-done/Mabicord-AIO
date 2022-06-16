@@ -17,7 +17,7 @@ module.exports = {
 	async execute(interaction) {
 		await interaction.reply({
 			content: "I am a sample message context menu.",
-		});
-		return;
+		})
+		return
 	},
-};
+}

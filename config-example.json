@@ -1,7 +1,12 @@
 {
 	"prefix": "!",
-	"token": "your-bot-token",
-	"owner": "owner-id",
-	"client_id": "bot-id",
-	"test_guild_id": "dev-server-id"
+	"token": "",
+	"owner": "",
+	"client_id": "",
+	"test_guild_id": "",
+	"channel_log": "",
+	"channel_alert": "",
+	"channel_raid": "",
+	"device_address": "",
+	"cap_filter": "src net 211.218.233 and ip and tcp"
 }

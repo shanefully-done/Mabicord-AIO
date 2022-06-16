@@ -18,6 +18,6 @@ module.exports = {
 
 		message.channel.send({
 			content: "Set this trigger response from `./triggers/reactions/hello.js`",
-		});
+		})
 	},
-};
+}

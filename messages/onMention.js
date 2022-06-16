@@ -4,7 +4,7 @@
  * @since 3.0.0
  */
 
-const { prefix } = require("../config.json");
+const { prefix } = require("../config.json")
 
 module.exports = {
 	/**
@@ -15,7 +15,7 @@ module.exports = {
 
 	async execute(message) {
 		return message.channel.send(
-			`Hi ${message.author}! My prefix is \`${prefix}\`, get help by \`${prefix}help\``
-		);
+			`안녕하세요 ${message.author}님! 제 명령 시작어는 \`${prefix}\`이고, 도움말은 \`${prefix}도움말\`을 통해 알아보실 수 있습니다!`
+		)
 	},
-};
+}

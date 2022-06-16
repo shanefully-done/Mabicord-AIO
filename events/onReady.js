@@ -14,6 +14,6 @@ module.exports = {
 	 * @param {import('../typings').Client} client Main Application Client.
 	 */
 	execute(client) {
-		console.log(`Ready! Logged in as ${client.user.tag}`);
+		console.log(`${client.user.tag}으로 로그인 완료.`)
 	},
-};
+}

@@ -13,9 +13,9 @@ module.exports = {
 
 	async execute(interaction) {
 		await interaction.reply({
-			content: "There was an issue while fetching this modal!",
+			content: "해당 모달을 실행하는데에 에러가 발생했습니다!",
 			ephemeral: true,
-		});
-		return;
+		})
+		return
 	},
-};
+}
