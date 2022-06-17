@@ -40,8 +40,25 @@ module.exports = {
 		var buffer = Buffer.alloc(65535)
 		var linkType = c.open(device, filter, bufSize, buffer)
 
+		let raidType = [
+			"거대 사자",
+			"거대 악어",
+			"거대 샌드웜",
+			"레드 드래곤",
+			"매머드",
+			"사막 드래곤",
+			"예티",
+			"이프리트",
+			"평원 드래곤",
+			"화이트 드래곤",
+			"블랙 드래곤",
+			"모쿠르칼피",
+			"실반 드래곤",
+		]
+
 		c.setMinBytes && c.setMinBytes(0)
 
+		// Every time a packet is received, this function is called.
 		c.on("packet", function (nbytes, trunc) {
 			if (linkType === "ETHERNET") {
 				var ret = decoders.Ethernet(buffer)
@@ -144,6 +161,14 @@ module.exports = {
 							let minutes = ("0" + currDate.getMinutes()).slice(-2)
 							let seconds = ("0" + currDate.getSeconds()).slice(-2)
 
+							// Detect type of raid
+							let fieldType = []
+							for (i = 0; i < raidType.length; i++) {
+								if (fieldRaid.includes(raidType[i])) {
+									fieldType.push(raidType[i])
+								}
+							}
+
 							// console.log(fieldRaid)
 							if (config.css == true) {
 								channelRaid.send(
@@ -153,13 +178,21 @@ module.exports = {
 										minutes +
 										":" +
 										seconds +
-										"] " +
-										fieldRaid +
-										"\n```"
+										"] 3분 후, " +
+										fieldType.join(", ") +
+										"이(가) 출몰합니다.\n```"
 								)
 							} else if (config.css == false) {
 								channelRaid.send(
-									"[" + hours + ":" + minutes + ":" + seconds + "] " + fieldRaid
+									"[" +
+										hours +
+										":" +
+										minutes +
+										":" +
+										seconds +
+										"] 3분 후, " +
+										fieldType.join(", ") +
+										"이(가) 출몰합니다."
 								)
 							}
 						}
