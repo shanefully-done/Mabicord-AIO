@@ -155,14 +155,11 @@ module.exports = {
 										seconds +
 										"] " +
 										fieldRaid +
-										"\n```" +
-										"<@&" +
-										role_raid +
-										">"
+										"\n```"
 								)
 							} else if (config.css == false) {
 								channelRaid.send(
-									"[" + hours + ":" + minutes + ":" + seconds + "] " + fieldRaid + " - <@&" + role_raid + ">"
+									"[" + hours + ":" + minutes + ":" + seconds + "] " + fieldRaid
 								)
 							}
 						}
