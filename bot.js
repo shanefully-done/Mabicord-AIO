@@ -10,7 +10,7 @@ const fs = require("fs")
 const { Client, Collection, Intents } = require("discord.js")
 const { REST } = require("@discordjs/rest")
 const { Routes } = require("discord-api-types/v9")
-const { token, client_id, test_guild_id } = require("./config.json")
+const { token, client_id, guild_id } = require("./config.json")
 
 /**
  * From v13, specifying the intents is compulsory.
@@ -200,7 +200,7 @@ const commandJsonData = [
 			 * 2. Please comment the below (uncommented) line (for guild commands).
 			 */
 
-			Routes.applicationGuildCommands(client_id, test_guild_id),
+			Routes.applicationGuildCommands(client_id, guild_id),
 
 			/**
 			 * Good advice for global commands, you need to execute them only once to update
