@@ -99,53 +99,51 @@ module.exports = {
 
 							// Process user keywords
 							const keywordDB = JSON.parse(fs.readFileSync("./commands/bugle/keywordDB.json", "utf8"))
-							var messageQueue = ""
+							var messageQueue = []
 							for (let i = 0; i < Object.keys(keywordDB).length; i++) {
 								// NOTE: Only continue if member is in the guild
 								// This only works if member has sends a message since the start of the bot
 								// as the guild member cache is not updated until the member sends a message
 								// if (guild.users.cache.has(Object.keys(keywordDB)[i])) {
 								for (let j = 0; j < Object.values(keywordDB)[i].length; j++) {
-									if (bugleData.includes(Object.values(keywordDB)[i][j]) == true && config.css == true) {
-										messageQueue +=
-											"```css\n[" +
-											hours +
-											":" +
-											minutes +
-											":" +
-											seconds +
-											"] " +
-											bugleNick +
-											" : " +
-											bugleData +
-											"\n```\n<@!" +
-											Object.keys(keywordDB)[i] +
-											"> - " +
-											Object.values(keywordDB)[i][j] +
-											"\n\n"
-									} else if (bugleData.includes(Object.values(keywordDB)[i][j]) == true && config.css == false) {
-										messageQueue +=
-											"[" +
-											hours +
-											":" +
-											minutes +
-											":" +
-											seconds +
-											"] " +
-											bugleNick +
-											" : " +
-											bugleData +
-											" - <@!" +
-											Object.keys(keywordDB)[i] +
-											"> : " +
-											Object.values(keywordDB)[i][j] +
-											"\n\n"
+									if (bugleData.includes(Object.values(keywordDB)[i][j]) == true) {
+										let alertUserInfo = "<@!" + Object.keys(keywordDB)[i] + ">: " + Object.values(keywordDB)[i][j]
+										messageQueue.push(alertUserInfo)
 									}
 								}
 								// }
 							}
-							if (messageQueue.length != 0) {
-								channelAlert.send(messageQueue)
+
+							if (messageQueue.length != 0 && config.css == true) {
+								channelAlert.send(
+									"```css\n[" +
+										hours +
+										":" +
+										minutes +
+										":" +
+										seconds +
+										"] " +
+										bugleNick +
+										" : " +
+										bugleData +
+										"\n```\n>>> " +
+										messageQueue.join(" | ")
+								)
+							} else if (messageQueue.length != 0 && config.css == false) {
+								channelAlert.send(
+									"[" +
+										hours +
+										":" +
+										minutes +
+										":" +
+										seconds +
+										"] " +
+										bugleNick +
+										" : " +
+										bugleData +
+										"\n>>> " +
+										messageQueue.join(" | ")
+								)
 							}
 						}
 
