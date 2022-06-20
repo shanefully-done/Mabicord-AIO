@@ -6,7 +6,8 @@
 	"main": "bot.js",
 	"scripts": {
 		"start": "node bot.js",
-		"dev": "nodemon bot.js --ignore commands/bugle/keywordDB.json"
+		"dev": "nodemon bot.js --ignore commands/bugle/keywordDB.json",
+		"serve": "forever start bot.js"
 	},
 	"repository": {
 		"type": "git",
