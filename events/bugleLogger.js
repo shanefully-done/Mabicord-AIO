@@ -103,7 +103,7 @@ module.exports = {
 								}).send({
 									avatarURL: "https://api.multiavatar.com/" + bugleNick + ".png",
 									username: bugleNick,
-									content: bugleData + " - [" + hours + ":" + minutes + ":" + seconds + "]",
+									content: bugleData,
 								})
 							}
 
