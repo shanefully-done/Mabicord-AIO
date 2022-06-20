@@ -13,6 +13,7 @@ const {
 	cap_filter,
 	config,
 } = require("./../config.json")
+const { WebhookClient } = require("discord.js")
 
 module.exports = {
 	name: "ready",
@@ -89,12 +90,21 @@ module.exports = {
 
 							// console.log(bugleNick + " : " + bugleData)
 
-							if (config.css == true) {
+							if (config.bugle_style == "css") {
 								channel.send(
 									"```css\n[" + hours + ":" + minutes + ":" + seconds + "] " + bugleNick + " : " + bugleData + "\n```"
 								)
-							} else if (config.css == false) {
+							} else if (config.bugle_style == "plain") {
 								channel.send("[" + hours + ":" + minutes + ":" + seconds + "] " + bugleNick + " : " + bugleData)
+							} else if (config.bugle_style == "webhook") {
+								new WebhookClient({
+									id: config.webhookID,
+									token: config.webhookToken,
+								}).send({
+									avatarURL: "https://api.multiavatar.com/" + bugleNick + ".png",
+									username: bugleNick,
+									content: bugleData + " - [" + hours + ":" + minutes + ":" + seconds + "]",
+								})
 							}
 
 							// Process user keywords

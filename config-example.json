@@ -12,6 +12,9 @@
 	"device_address": "NETWORK_DEVICE_IP_ADDRESS",
 	"cap_filter": "src net 211.218.233 and ip and tcp",
 	"config": {
-		"css": true
+		"css": true,
+		"bugle_style": "css",
+		"webhookID": "WEBHOOK_ID",
+		"webhookToken": "WEBHOOK_TOKEN"
 	}
 }
