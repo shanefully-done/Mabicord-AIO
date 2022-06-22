@@ -11,6 +11,8 @@
 	"role_raid": "RAID_ROLE_ID",
 	"device_address": "NETWORK_DEVICE_IP_ADDRESS",
 	"cap_filter": "src net 211.218.233 and ip and tcp",
+	"server_ip": "211.218.233.101",
+	"server_port": "11000",
 	"config": {
 		"css": true,
 		"bugle_style": "css",
