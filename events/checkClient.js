@@ -23,7 +23,7 @@ module.exports = {
 
 		console.log("Check Client started!")
 
-		cron.schedule("5 * * * *", () => {
+		cron.schedule("0 */5 * * * *", () => {
 			console.log("Cron: Check client")
 			const serverStatus = JSON.parse(fs.readFileSync("./events/checkServer.json", "utf8")).status
 			if (serverStatus == true) {
