@@ -8,7 +8,7 @@
 const tcpPing = require("tcp-ping")
 const cron = require("node-cron")
 const fs = require("fs")
-const { server_ip, server_port, channel_log } = require("../config.json")
+const { server_ip, server_port, channel_log, channel_alert, channel_raid } = require("../config.json")
 
 module.exports = {
 	name: "ready",
@@ -20,6 +20,8 @@ module.exports = {
 	 */
 	execute(client) {
 		const channel = client.channels.cache.get(channel_log)
+		const channelAlert = client.channels.cache.get(channel_alert)
+		const channelRaid = client.channels.cache.get(channel_raid)
 
 		tcpPing.probe(server_ip, server_port, function (err, available) {
 			cron.schedule("0 */1 * * * *", () => {
@@ -32,10 +34,14 @@ module.exports = {
 					console.log("Login server is up!")
 					fs.writeFileSync("./events/checkServer.json", JSON.stringify(obj))
 					channel.send(">>> **로그인 서버가 열렸습니다!**")
+					channelAlert.send(">>> **로그인 서버가 열렸습니다!**")
+					channelRaid.send(">>> **로그인 서버가 열렸습니다!**")
 				} else if (available == false && lastStatus == true) {
 					console.log("Login server is down!")
 					fs.writeFileSync("./events/checkServer.json", JSON.stringify(obj))
 					channel.send(">>> **로그인 서버가 닫혔습니다!**")
+					channelAlert.send(">>> **로그인 서버가 닫혔습니다!**")
+					channelRaid.send(">>> **로그인 서버가 닫혔습니다!**")
 				} else {
 					console.log("available: %s", available)
 					console.log("lastStatus: %s", lastStatus)
