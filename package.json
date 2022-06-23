@@ -35,7 +35,7 @@
 		"discord.js": "^13.8.0",
 		"find-process": "^1.4.7",
 		"node-cron": "^3.0.0",
-		"tcp-ping": "^0.1.1"
+		"node-fetch": "^2.6.7"
 	},
 	"devDependencies": {
 		"nodemon": "^2.0.16"

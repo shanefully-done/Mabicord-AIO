@@ -671,7 +671,7 @@
   dependencies:
     "moment-timezone" "^0.5.31"
 
-"node-fetch@^2.6.1":
+"node-fetch@^2.6.1", "node-fetch@^2.6.7":
   "integrity" "sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ=="
   "resolved" "https://registry.npmjs.org/node-fetch/-/node-fetch-2.6.7.tgz"
   "version" "2.6.7"
@@ -874,11 +874,6 @@
   "version" "7.2.0"
   dependencies:
     "has-flag" "^4.0.0"
-
-"tcp-ping@^0.1.1":
-  "integrity" "sha512-7Ed10Ds0hYnF+O1lfiZ2iSZ1bCAj+96Madctebmq7Y1ALPWlBY4YI8C6pCL+UTlshFY5YogixKLpgDP/4BlHrw=="
-  "resolved" "https://registry.npmjs.org/tcp-ping/-/tcp-ping-0.1.1.tgz"
-  "version" "0.1.1"
 
 "to-readable-stream@^1.0.0":
   "integrity" "sha512-Iq25XBt6zD5npPhlLVXGFN3/gyR2/qODcKNNyTMd4vbm39HUaOiAM4PMq0eMVC/Tkxz+Zjdsc55g9yyz+Yq00Q=="
