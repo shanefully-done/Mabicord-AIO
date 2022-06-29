@@ -53,7 +53,7 @@ module.exports = {
 						channel.send(">>> **패치 & 로그인 서버가 열렸습니다!**")
 						channelAlert.send(">>> **패치 & 로그인 서버가 열렸습니다!**")
 						channelRaid.send(">>> **패치 & 로그인 서버가 열렸습니다!**")
-					} else if (lastStatus == true && (patchInfo.patch_accept == "0" || curr_dt < patchInfo.ed_dt)) {
+					} else if (lastStatus == true && patchInfo.patch_accept == "0" && curr_dt < patchInfo.ed_dt) {
 						console.log("Update server is down!")
 						fs.writeFileSync("./events/checkServer.json", JSON.stringify({ status: false }))
 						channel.send(">>> **패치 & 로그인 서버가 닫혔습니다!**")
