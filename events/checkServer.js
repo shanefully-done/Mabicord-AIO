@@ -47,13 +47,23 @@ module.exports = {
 
 					const lastStatus = JSON.parse(fs.readFileSync("./events/checkServer.json", "utf8")).status
 
-					if (lastStatus == false && patchInfo.patch_accept == "1" && curr_dt > patchInfo.ed_dt) {
+					if (
+						lastStatus == false &&
+						patchInfo.patch_accept == "1" &&
+						curr_dt > patchInfo.st_dt &&
+						curr_dt > patchInfo.ed_dt
+					) {
 						console.log("Update server is up!")
 						fs.writeFileSync("./events/checkServer.json", JSON.stringify({ status: true }))
 						channel.send(">>> **패치 & 로그인 서버가 열렸습니다!**")
 						channelAlert.send(">>> **패치 & 로그인 서버가 열렸습니다!**")
 						channelRaid.send(">>> **패치 & 로그인 서버가 열렸습니다!**")
-					} else if (lastStatus == true && patchInfo.patch_accept == "0" && curr_dt < patchInfo.ed_dt) {
+					} else if (
+						lastStatus == true &&
+						(patchInfo.patch_accept == "0" || patchInfo.patch_accept == "1") &&
+						curr_dt > patchInfo.st_dt &&
+						curr_dt < patchInfo.ed_dt
+					) {
 						console.log("Update server is down!")
 						fs.writeFileSync("./events/checkServer.json", JSON.stringify({ status: false }))
 						channel.send(">>> **패치 & 로그인 서버가 닫혔습니다!**")
