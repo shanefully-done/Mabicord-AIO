@@ -82,6 +82,15 @@ Edit the following options.
 2. Run `npm run start`.
     - Optionally, use `forever` or `pm2` to start `bot.js`.
 
+# Using commands
+| Command | Description |
+| --- | --- |
+| !help | Sends all commands/help message via DM |
+| !add keyword | Adds a keyword. Add multiple keywords, separated by space. |
+| !remove | Remove a keyword. You can only remove one at a time. |
+| !list | Lists currently registered keywords. |
+| !reset | Remove all keywords. |
+
 # Troubleshooting
 
 ## Finding your `device_address`
