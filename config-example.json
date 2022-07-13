@@ -8,6 +8,8 @@
 	"channel_log": "BUGLE_LOG_CHANNEL_ID",
 	"channel_alert": "BUGLE_ALERT_CHANNEL_ID",
 	"channel_raid": "RAID_LOG_CHANNEL_ID",
+	"bugle_collect": "ON",
+	"raid_collect": "OFF",
 	"role_raid": "RAID_ROLE_ID",
 	"device_address": "NETWORK_DEVICE_IP_ADDRESS",
 	"cap_filter": "src net 211.218.233 and ip and tcp",

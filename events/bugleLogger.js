@@ -5,14 +5,16 @@
  */
 
 const {
-	channel_log,
-	channel_alert,
-	channel_raid,
-	role_raid,
-	device_address,
+	bugle_collect,
 	cap_filter,
+	channel_alert,
+	channel_log,
+	channel_raid,
 	config,
+	device_address,
 	language,
+	raid_collect,
+	role_raid,
 } = require("./../config.json")
 const { WebhookClient } = require("discord.js")
 const lang = require("./../lang/" + language + ".json")
@@ -85,7 +87,7 @@ module.exports = {
 						let minutes = ("0" + currDate.getMinutes()).slice(-2)
 						let seconds = ("0" + currDate.getSeconds()).slice(-2)
 
-						if (rcvStr.includes("<ALL_CHANNELS>")) {
+						if (bugle_collect == "ON" && rcvStr.includes("<ALL_CHANNELS>")) {
 							if (bugleData == "NaN" || bugleData == "undefined" || bugleData == NaN || bugleData == undefined) {
 								return
 							}
@@ -160,7 +162,7 @@ module.exports = {
 						}
 
 						// Raid alert
-						if (rcvStr.includes(lang.channel)) {
+						if (raid_collect == "ON" && rcvStr.includes(lang.channel)) {
 							if (fieldRaid == "NaN" || fieldRaid == "undefined" || fieldRaid == NaN || fieldRaid == undefined) {
 								return
 							}
