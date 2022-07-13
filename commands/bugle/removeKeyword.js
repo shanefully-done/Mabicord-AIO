@@ -4,6 +4,8 @@
  * @since 1.0.0
  */
 
+const { channel_command } = require("./../../config.json")
+
 module.exports = {
 	name: "삭제",
 
@@ -23,36 +25,38 @@ module.exports = {
 	 */
 
 	execute(message, args) {
-		var removeSuccess = false
-		var fs = require("fs")
-		var oldKeyword = []
-		var user = message.author.id
+		if (message["channelId"] == channel_command) {
+			var removeSuccess = false
+			var fs = require("fs")
+			var oldKeyword = []
+			var user = message.author.id
 
-		// Read old keyword JSON
-		const data = fs.readFileSync("./commands/bugle/keywordDB.json", "utf8")
-		oldKeyword = JSON.parse(data)
+			// Read old keyword JSON
+			const data = fs.readFileSync("./commands/bugle/keywordDB.json", "utf8")
+			oldKeyword = JSON.parse(data)
 
-		if (Object.keys(oldKeyword).filter((user) => user == message.author.id) == user) {
-			for (let i = 0; i < oldKeyword[user].length; i++) {
-				if (oldKeyword[user][i] == args[0]) {
-					oldKeyword[user].splice(i, 1)
-					removeSuccess = true
+			if (Object.keys(oldKeyword).filter((user) => user == message.author.id) == user) {
+				for (let i = 0; i < oldKeyword[user].length; i++) {
+					if (oldKeyword[user][i] == args[0]) {
+						oldKeyword[user].splice(i, 1)
+						removeSuccess = true
+					}
 				}
 			}
-		}
 
-		if (removeSuccess == true) {
-			try {
-				// Write appended keyword list to JSON
-				fs.writeFileSync("./commands/bugle/keywordDB.json", JSON.stringify(oldKeyword))
-				message.reply({
-					content: args[0] + " 키워드를 알림 목록에서 삭제했습니다.",
-				})
-			} catch (err) {
-				console.error(err)
+			if (removeSuccess == true) {
+				try {
+					// Write appended keyword list to JSON
+					fs.writeFileSync("./commands/bugle/keywordDB.json", JSON.stringify(oldKeyword))
+					message.reply({
+						content: args[0] + " 키워드를 알림 목록에서 삭제했습니다.",
+					})
+				} catch (err) {
+					console.error(err)
+				}
+			} else if (removeSuccess == false) {
+				message.reply({ content: "삭제할 키워드가 없습니다." })
 			}
-		} else if (removeSuccess == false) {
-			message.reply({ content: "삭제할 키워드가 없습니다." })
 		}
 	},
 }

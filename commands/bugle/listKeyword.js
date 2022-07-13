@@ -4,6 +4,8 @@
  * @since 1.0.0
  */
 
+const { channel_command } = require("./../../config.json")
+
 module.exports = {
 	name: "목록",
 
@@ -23,24 +25,26 @@ module.exports = {
 	 */
 
 	execute(message, args) {
-		var fs = require("fs")
+		if (message["channelId"] == channel_command) {
+			var fs = require("fs")
 
-		var messageCombine = ""
-		var listKeyword = []
-		var user = message.author.id
+			var messageCombine = ""
+			var listKeyword = []
+			var user = message.author.id
 
-		try {
-			// Read old keyword JSON
-			const data = fs.readFileSync("./commands/bugle/keywordDB.json", "utf8")
-			listKeyword = JSON.parse(data)
-		} catch (err) {
-			console.error(err)
-		}
+			try {
+				// Read old keyword JSON
+				const data = fs.readFileSync("./commands/bugle/keywordDB.json", "utf8")
+				listKeyword = JSON.parse(data)
+			} catch (err) {
+				console.error(err)
+			}
 
-		if (listKeyword[user] != undefined) {
-			message.reply({ content: listKeyword[user].join(", ") })
-		} else {
-			message.reply({ content: "등록된 키워드가 없습니다." })
+			if (listKeyword[user] != undefined) {
+				message.reply({ content: listKeyword[user].join(", ") })
+			} else {
+				message.reply({ content: "등록된 키워드가 없습니다." })
+			}
 		}
 	},
 }

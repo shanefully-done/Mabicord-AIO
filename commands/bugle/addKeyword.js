@@ -4,6 +4,8 @@
  * @since 1.1.0
  */
 
+const { channel_command } = require("./../../config.json")
+
 module.exports = {
 	name: "추가",
 
@@ -23,67 +25,69 @@ module.exports = {
 	 */
 
 	execute(message, args) {
-		var fs = require("fs")
-		var dupeCheck = false
-		var user = message.author.id
-		var oldKeyword = []
-		var newKeyword = {}
+		if (message["channelId"] == channel_command) {
+			var fs = require("fs")
+			var dupeCheck = false
+			var user = message.author.id
+			var oldKeyword = []
+			var newKeyword = {}
 
-		newKeyword[user] = []
-		for (i = 0; i < args.length; i++) {
-			newKeyword[user].push(args[i])
-		}
+			newKeyword[user] = []
+			for (i = 0; i < args.length; i++) {
+				newKeyword[user].push(args[i])
+			}
 
-		try {
-			// Read old keyword JSON
-			const data = fs.readFileSync("./commands/bugle/keywordDB.json", "utf8")
-			oldKeyword = JSON.parse(data)
-		} catch (err) {
-			console.error(err)
-		}
+			try {
+				// Read old keyword JSON
+				const data = fs.readFileSync("./commands/bugle/keywordDB.json", "utf8")
+				oldKeyword = JSON.parse(data)
+			} catch (err) {
+				console.error(err)
+			}
 
-		if (oldKeyword[user] != undefined) {
-			for (let j = 0; j < oldKeyword[user].length; j++) {
-				if (dupeCheck == true) {
-					break
-				} else {
-					for (let i = 0; i < newKeyword[user].length; i++) {
-						if (oldKeyword[user][j] == newKeyword[user][i]) {
-							dupeCheck = true
-							message.reply({
-								content: newKeyword[user][i] + " 키워드가 이미 등록되어 있습니다.",
-							})
-							break
-						} else if (
-							newKeyword[user][i] == "undefined" ||
-							newKeyword[user][i] == "NaN" ||
-							newKeyword[user][i] == undefined ||
-							newKeyword[user][i] == NaN
-						) {
-							dupeCheck = true
-							message.reply({ content: "키워드 등록 실패 : undefined" })
-							break
-						} else {
-							dupeCheck = false
+			if (oldKeyword[user] != undefined) {
+				for (let j = 0; j < oldKeyword[user].length; j++) {
+					if (dupeCheck == true) {
+						break
+					} else {
+						for (let i = 0; i < newKeyword[user].length; i++) {
+							if (oldKeyword[user][j] == newKeyword[user][i]) {
+								dupeCheck = true
+								message.reply({
+									content: newKeyword[user][i] + " 키워드가 이미 등록되어 있습니다.",
+								})
+								break
+							} else if (
+								newKeyword[user][i] == "undefined" ||
+								newKeyword[user][i] == "NaN" ||
+								newKeyword[user][i] == undefined ||
+								newKeyword[user][i] == NaN
+							) {
+								dupeCheck = true
+								message.reply({ content: "키워드 등록 실패 : undefined" })
+								break
+							} else {
+								dupeCheck = false
+							}
 						}
 					}
 				}
-			}
-			if (dupeCheck == false) {
-				for (let i = 0; i < newKeyword[user].length; i++) {
-					oldKeyword[user].push(newKeyword[user][i])
+				if (dupeCheck == false) {
+					for (let i = 0; i < newKeyword[user].length; i++) {
+						oldKeyword[user].push(newKeyword[user][i])
+					}
+					fs.writeFileSync("./commands/bugle/keywordDB.json", JSON.stringify(oldKeyword))
+					message.reply({
+						content: newKeyword[user].join(", ") + " 키워드를 알림 목록에 등록했습니다.",
+					})
 				}
+			} else if (oldKeyword[user] == undefined) {
+				oldKeyword[user] = newKeyword[user]
 				fs.writeFileSync("./commands/bugle/keywordDB.json", JSON.stringify(oldKeyword))
 				message.reply({
 					content: newKeyword[user].join(", ") + " 키워드를 알림 목록에 등록했습니다.",
 				})
 			}
-		} else if (oldKeyword[user] == undefined) {
-			oldKeyword[user] = newKeyword[user]
-			fs.writeFileSync("./commands/bugle/keywordDB.json", JSON.stringify(oldKeyword))
-			message.reply({
-				content: newKeyword[user].join(", ") + " 키워드를 알림 목록에 등록했습니다.",
-			})
 		}
 	},
 }

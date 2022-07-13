@@ -4,6 +4,8 @@
  * @since 1.0.0
  */
 
+const { channel_command } = require("./../../config.json")
+
 module.exports = {
 	name: "초기화",
 
@@ -23,29 +25,31 @@ module.exports = {
 	 */
 
 	execute(message, args) {
-		var fs = require("fs")
-		var oldKeyword = []
-		var user = message.author.id
+		if (message["channelId"] == channel_command) {
+			var fs = require("fs")
+			var oldKeyword = []
+			var user = message.author.id
 
-		try {
-			// Read old keyword JSON
-			const data = fs.readFileSync("./commands/bugle/keywordDB.json", "utf8")
-			oldKeyword = JSON.parse(data)
-		} catch (err) {
-			console.error(err)
-		}
-
-		if (oldKeyword[user] != undefined) {
-			oldKeyword[user].length = 0
 			try {
-				// Write appended keyword list to JSON
-				fs.writeFileSync("./commands/bugle/keywordDB.json", JSON.stringify(oldKeyword))
-				message.reply({ content: "키워드 알림을 초기화 했습니다." })
+				// Read old keyword JSON
+				const data = fs.readFileSync("./commands/bugle/keywordDB.json", "utf8")
+				oldKeyword = JSON.parse(data)
 			} catch (err) {
 				console.error(err)
 			}
-		} else {
-			message.reply({ content: "초기화 실패! 등록된 키워드가 없습니다." })
+
+			if (oldKeyword[user] != undefined) {
+				oldKeyword[user].length = 0
+				try {
+					// Write appended keyword list to JSON
+					fs.writeFileSync("./commands/bugle/keywordDB.json", JSON.stringify(oldKeyword))
+					message.reply({ content: "키워드 알림을 초기화 했습니다." })
+				} catch (err) {
+					console.error(err)
+				}
+			} else {
+				message.reply({ content: "초기화 실패! 등록된 키워드가 없습니다." })
+			}
 		}
 	},
 }
