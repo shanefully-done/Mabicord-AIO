@@ -42,13 +42,16 @@ Mabicord AIO is a Discord bot that handles MMORPG Mabinogi's raid messages and b
 
 1. On desktop or web version of Discord, go to *User Settings → Advanced* and enable *Developer Mode*.
 2. With developer mode enabled, you can access ID of an element via context menu by right clicking on the element.
-3. Download the repo as ZIP.
-4. Unzip the file into a convenient folder.
-5. In the root directory of the project, copy `config-example.json` to `config.json`.
+
+### Preparing project
+1. Download the repo as ZIP.
+2. Unzip the file into a convenient folder.
+3. In the root directory of the project, copy `config-example.json` to `config.json`.
 
 ## Configuration
 
-Copy `config-example.json` to `config.json`.
+Copy `config-example.json` to `config.json`.  
+Edit the following options.
 
 | Name | Description |
 | --- | --- |
