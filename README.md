@@ -64,6 +64,8 @@ Edit the following options.
 | channel_log | ID of channel for logging bugle horn messages. |
 | channel_alert | ID of channel for mentioning users when a keyword is matched in a bugle horn message. |
 | channel_raid | ID of channel to log world raid events. |
+| bugle_collect | Whether to use raid alert feature on not. Choose between ON or OFF. Defaults to ON. |
+| raid_collect | Whether to use raid alert feature on not. Choose between ON or OFF. Defaults to OFF to avoid collision in multi-server Discord servers. |
 | role_raid | ID of role to mention when a world raid occurs. |
 | device_address | Address of device used to capture network packets. Use deviceList.js to find your device address. |
 | cap_filter | Partial IP address to listen to for incoming packets. IP defaults to official Korean Lute server. |
