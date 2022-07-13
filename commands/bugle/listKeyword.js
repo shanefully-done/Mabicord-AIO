@@ -25,7 +25,7 @@ module.exports = {
 	 */
 
 	execute(message, args) {
-		if (message["channelId"] == channel_command) {
+		if (channel_command == "ANY" || channel_command == message["channelId"]) {
 			var fs = require("fs")
 
 			var messageCombine = ""

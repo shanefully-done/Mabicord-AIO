@@ -8,6 +8,7 @@
 	"channel_log": "BUGLE_LOG_CHANNEL_ID",
 	"channel_alert": "BUGLE_ALERT_CHANNEL_ID",
 	"channel_raid": "RAID_LOG_CHANNEL_ID",
+	"channel_command": "ANY",
 	"bugle_collect": "ON",
 	"raid_collect": "OFF",
 	"role_raid": "RAID_ROLE_ID",
