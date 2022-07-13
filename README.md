@@ -66,7 +66,7 @@ Edit the following options.
 | channel_raid | ID of channel to log world raid events. |
 | role_raid | ID of role to mention when a world raid occurs. |
 | device_address | Address of device used to capture network packets. Use deviceList.js to find your device address. |
-| cap_filter | Partial IP address to listen to for incoming packets. IP defaults to official Korean server. |
+| cap_filter | Partial IP address to listen to for incoming packets. IP defaults to official Korean Lute server. |
 | patch_url | Address of patch information text file. Defaults to official Korean server. |
 | language | Language Mabicord AIO will send messages in. Supports english and korean. Language defaults to Korean. |
 | config.css | Message style Mabicord sends in. Toggles between CSS and plain styles. |
