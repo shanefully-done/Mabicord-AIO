@@ -8,6 +8,9 @@
 	"checkClientDMFail": "Failed to send client down message via DM",
 	"checkClientDMFailSend": "Client is down. (Failed to send message via DM)",
 
+	"serverUp": ">>> **Server is up!**",
+	"serverDown": ">>> **Server is down!**",
+
 	"bugleLogger": "Start collecting horns",
 	"channel": "[Channel 12]",
 	"raidLion": "Giant Lion",

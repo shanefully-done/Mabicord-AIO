@@ -8,7 +8,8 @@
 const cron = require("node-cron")
 const fs = require("fs")
 const fetch = require("node-fetch")
-const { patch_url, channel_log, channel_alert, channel_raid } = require("../config.json")
+const { patch_url, channel_log, channel_alert, channel_raid, language } = require("../config.json")
+const lang = require("../lang/" + language + ".json")
 
 module.exports = {
 	name: "ready",
@@ -55,9 +56,9 @@ module.exports = {
 					) {
 						console.log("Update server is up!")
 						fs.writeFileSync("./events/checkServer.json", JSON.stringify({ status: true }))
-						channel.send(">>> **패치 & 로그인 서버가 열렸습니다!**")
-						channelAlert.send(">>> **패치 & 로그인 서버가 열렸습니다!**")
-						channelRaid.send(">>> **패치 & 로그인 서버가 열렸습니다!**")
+						channel.send(lang.serverUp)
+						channelAlert.send(lang.serverUp)
+						channelRaid.send(lang.serverUp)
 					} else if (
 						lastStatus == true &&
 						(patchInfo.patch_accept == "0" || patchInfo.patch_accept == "1") &&
@@ -66,9 +67,9 @@ module.exports = {
 					) {
 						console.log("Update server is down!")
 						fs.writeFileSync("./events/checkServer.json", JSON.stringify({ status: false }))
-						channel.send(">>> **패치 & 로그인 서버가 닫혔습니다!**")
-						channelAlert.send(">>> **패치 & 로그인 서버가 닫혔습니다!**")
-						channelRaid.send(">>> **패치 & 로그인 서버가 닫혔습니다!**")
+						channel.send(lang.serverDown)
+						channelAlert.send(lang.serverDown)
+						channelRaid.send(lang.serverDown)
 					}
 				})
 		})

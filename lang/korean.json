@@ -8,6 +8,9 @@
 	"checkClientDMFail": "DM으로 클라이언트 다운 메세지를 보내는데 실패했습니다",
 	"checkClientDMFailSend": "클라이언트가 다운되었습니다. (DM으로 메세지를 보내는데 실패했습니다)",
 
+	"serverUp": ">>> **서버가 열렸습니다!**",
+	"serverDown": ">>> **서버가 닫혔습니다!**",
+
 	"bugleLogger": "뿔피리 수집 시작",
 	"channel": "[채널12]",
 	"raidLion": "거대 사자",
