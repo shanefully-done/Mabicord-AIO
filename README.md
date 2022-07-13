@@ -1,124 +1,99 @@
-<h1 align="center">Welcome to NamVr Discord Bot Template 👋</h1>
-<p>
-  <img alt="Version" src="https://img.shields.io/badge/version-v3.2-blue.svg?cacheSeconds=2592000" />
-  <a href="https://github.com/NamVr/DiscordBot-Template#readme" target="_blank">
-    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
-  </a>
-  <a href="https://github.com/NamVr/DiscordBot-Template/graphs/commit-activity" target="_blank">
-    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
-  </a>
-  <a href="https://twitter.com/namanvrati" target="_blank">
-    <img alt="Twitter: namanvrati" src="https://img.shields.io/twitter/follow/namanvrati.svg?style=social" />
-  </a>
-</p>
+# About
 
-> An **open source** `discord.js` bot template which is based on official [discord.js guide](https://discordjs.guide/) to get started on making your very personal discord bot!
+Mabicord AIO is a Discord bot that handles MMORPG Mabinogi's raid messages and bugle messages, designed to serve a single Discord server.
 
-### 🏠 [Homepage](https://github.com/NamVr/DiscordBot-Template#readme)
+# Features
 
-## Introduction
+- Relay field raid event notifications to designated Discord channels.
+- Relay horn bugle messages to designated Discord channels.
+- Let users edit their own keywords. If a new horn bugle message has the keyword in it, send a notification to the user by mentioning him/her.
+- Announce changes of server status to all channels.
 
-`NamVr` Discord Bot Template is an open source discord.js based bot template to get started on a new bot project. It is classic javascript template, not requiring any external dependencies unlike other famous frameworks. (This is not a framework!)
-You can scale any kind of bot project using this template. (single server based or multiple server based) It all depends on your creativity!
+# Installation
 
-> 🛠️ **NEW!** _This template now supports **in-built typing (typescript-assistance) support** too, which means you will get all typescript-like assistant in vanilla javascipt! (Visual Studio Code tested, working 100% as expected)_
+## Requirements
 
-### Features:
+- Windows 10 (lower Windows versions are not tested)
+- [npcap](https://npcap.com/)
+- [node.js](https://nodejs.org/) 16.13.1 or higher
 
-This template comes in with many in-built useful and flexible features, such as
+## Preparation
 
-#### • **Dynamic Command Handler:**
+### Preparing Discord Bot
 
-- My template comes in with a dynamic command handler! Using the command handler, you don't need to indulge in main bot files to create your very own command!
-- You can simply make command groups (categorized as folders) in the [commands](https://github.com/NamVr/DiscordBot-Template/tree/master/commands/) folder.
-- Your JavaScript commands goes inside respective category folders. A sample command is provided as [ping](https://github.com/NamVr/DiscordBot-Template/blob/master/commands/misc/ping.js) command. You can use the same skeleton for all commands you want!
+1. Go to [Discord Developer Portal](https://discord.com/developers/applications).
+2. Create new application.
+3. Under *Bot*, click *Add Bot*.
+    1. Uncheck public bot if you plan to keep the bot in servers where you have permission to add bots.
+4. Click *Reset Token*. Take note of this randomised string.
+5. Under *OAuth2 → URL Generator*:
+    1. Check *bot* and *applications.commands* scopes.
+    2. Under *bot permissions*, check *administrator* or if you want to keep the permissions minimal:
+        1. Read Messages/View Channels
+        2. Send Messages
+        3. Embed Links
+        4. Read Message History
+        5. Mention Everyone
+        6. Add Reactions
+        7. Use Slash Commands
+    3. Take note of the *generated URL*, this is the link you use to add bot to your server.
 
-#### • **Dynamic Event Handler:**
+### Enable Discord Developer Mode
 
-- All events goes inside the [events](https://github.com/NamVr/DiscordBot-Template/blob/master/events/) folder. You don't need to use `client.on()` in the main `bot.js` file to handle events.
-- Using simple skeleton code for events, you can make any amount of events in the events folder using the event handler.
-
-#### • **Dynamic Trigger Handler:**
-
-- Triggers occur when a specific "phrase" is said in a message content. For example, if you want your bot to react with :heart: when someone say `welcome` in their message, you can do that with this trigger handler!
-- Trigger Handler also has the same skeleton structure as of command handler. The trigger handler is associated with the [triggers](https://github.com/NamVr/DiscordBot-Template/tree/master/triggers/) folder. There are trigger categories, like [reactions](https://github.com/NamVr/DiscordBot-Template/tree/master/triggers/reactions) folder, in the trigger folder.
-- A sample trigger command is given in the [`hello.js`](https://github.com/NamVr/DiscordBot-Template/tree/master/triggers/reactions/hello.js) trigger file.
-
-#### • **Dynamic Slash Command Handler:**
-
-- My template comes with a dynamic slash command handler with very easy to customize and make slash commands.
-- The commands, in the slashCommands folder, receive an [`CommandInteraction`](https://discord.js.org/#/docs/main/stable/class/CommandInteraction) object. You can see the [documentation of discord.js](https://discord.js.org/#/docs/main/stable/class/CommandInteraction) for all the properties and methods available.
-- **IMPORTANT:** In the template, we are sending the slash commands to discord to be registered only to 1 guild. That is because their are 2 types of slash commands, guild and global. Guild commands are restricted to 1 guild but whenever you update them, they take effect immediately, whereas global commands take upto 1 hour to take effect. So use guild commands in development and global commands for production.
-
-#### • **Dynamic Buttons Interaction Handler:**
-
-- This template comes with a dynamic button interaction handler to receive and process button interactions.
-- Buttons can be classified in two category folders.
-
-#### • **[NEW] Dynamic Modals Interaction Handler:**
-
-- Easily handle incoming modal submittions using the template handler!
-- Modals can be categorized in different folders.
-
-#### • **Dynamic Context Menu Handler:**
-
-- All new addition to discord API is context menus! You can right click a user or message -> Apps to find these options!
-- This template will register all your context menu options and dynamically interact with them! Worth a try.
-
-#### • **Highly Customizable:**
-
-Using the template is so easy and fun, you would know. As the template does not rely on any external dependencies and written in javascript, it is highly customizable to any extend. There's no end to your creativity!
-
-#### • **Open source and self-hosted:**
-
-> It's yours, you have full control.
-
-## Install
-
-```sh
-npm install
-```
+1. On desktop or web version of Discord, go to *User Settings → Advanced* and enable *Developer Mode*.
+2. With developer mode enabled, you can access ID of an element via context menu by right clicking on the element.
+3. Download the repo as ZIP.
+4. Unzip the file into a convenient folder.
+5. In the root directory of the project, copy `config-example.json` to `config.json`.
 
 ## Configuration
 
-- Rename [`config-example.json`](https://github.com/NamVr/DiscordBot-Template/blob/master/config-example.json) to `config.json` and fill the token and other values. Extend config.json according to your needs!
+Copy `config-example.json` to `config.json`.
 
-## Run your bot
+| Name | Description |
+| --- | --- |
+| prefix | Prefix of command used to control Mabicord AIO. |
+| token | Bot token issued from Discord Developer Portal. |
+| owner | ID of bot owner. |
+| client_id | Application ID issued from Discord Developer Portal. |
+| test_guild_id | Server ID of bot’s test server. It’s highly recommended to have a dedicated test server for your bot. |
+| guild_id | Server ID of bot’s main server. Mabicord AIO is designed to server a single server. |
+| channel_log | ID of channel for logging bugle horn messages. |
+| channel_alert | ID of channel for mentioning users when a keyword is matched in a bugle horn message. |
+| channel_raid | ID of channel to log world raid events. |
+| role_raid | ID of role to mention when a world raid occurs. |
+| device_address | Address of device used to capture network packets. Use deviceList.js to find your device address. |
+| cap_filter | Partial IP address to listen to for incoming packets. IP defaults to official Korean server. |
+| patch_url | Address of patch information text file. Defaults to official Korean server. |
+| language | Language Mabicord AIO will send messages in. Supports english and korean. Language defaults to Korean. |
+| config.css | Message style Mabicord sends in. Toggles between CSS and plain styles. |
+| config.bugle_style | Bugle horn message log style. Choose between css, plain and webhook. Using webhook will send the message as if the user has send the message. |
+| config.webhookID | ID part of webhook URL. A webhook URL is constructed as https://discord.com/api/webhooks/ID/Token. |
+| config.webhookToken | Token part of webhook URL. A webhook URL is constructed as https://discord.com/api/webhooks/ID/Token. |
 
-```sh
-npm start
-```
+## Serving Mabicord AIO
 
-## Support & Documentation
+1. Log in with any character in Mabinogi.
+2. Run `npm run start`.
+    - Optionally, use `forever` or `pm2` to start `bot.js`.
 
-I'm working to make it more professional and easy to use for everyone. There will be a documentation out very soon.
+# Troubleshooting
 
-> WIP : https://djs.docs.namanvrati.cf/
+## Finding your `device_address`
 
-## Author
+Use IP address assigned by your router. It is recommended to use static DHCP by configuring in your router settings.  
+If you don't know your IP address issued by your router, you have two options.
+1. Access your router settings and view which IP it is issuing.
+2. In Windows network settings, find IPv4 address under `Hardware properties` of your network device.
+3. Run `node deviceList.js` to confirm and use the `addr` assigned by your router.
 
-👤 **Naman Vrati**
+## What are the `cap_filter` values for my server?
 
-- Website: https://namanvrati.cf/ [broken lol]
-- Twitter: [@namanvrati](https://twitter.com/namanvrati) [inactive]
-- Github: [@NamVr](https://github.com/NamVr) [follow here]
+If you have configured `device_address` correctly, running `node findChannel.js` will log valid IP address and data if it includes `<ALL_CHANNELS>` in the message while running Mabinogi.  
+If you have successfully logged your channel IP, log all IP addresses by channel hopping. To make the process faster, you may send bugle messages yourself.  
+Once you have collected all IP addresses, find common value and substitute `211.218.233` appropriately. Leaving out values will automatically match source IP partially.
 
-### Contributors
+# Contributing
 
-👤 Thank you so much to **[Krish Garg](https://github.com/KrishGarg)** and **[Thomas Fournier](https://github.com/GoudronViande24)** for giving awesome contributions to the project.
-
-## 🤝 Contributing
-
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/NamVr/DiscordBot-Template/issues). You can also take a look at the [contributing guide](https://github.com/NamVr/DiscordBot-Template/blob/master/CONTRIBUTING.md).
-
-## Show your support
-
-Give a ⭐️ if this project helped you! Star-ring the project gives me encouragement to continue it.
-You can also [sponsor](https://ko-fi.com/namanvrati) the project and get listed as a contributer! Thanks a lot.
-
-## 📝 License
-
-Copyright © 2021 [Naman Vrati](https://github.com/NamVr).<br />
-This project is [ISC](LICENSE) licensed.
-
----
+Feel free to contribute via issues or pull requests!  
+If you need to contact me, reach out at Lx#2909 on Discord.
