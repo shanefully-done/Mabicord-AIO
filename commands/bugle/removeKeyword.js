@@ -4,14 +4,15 @@
  * @since 1.0.0
  */
 
-const { channel_command } = require("./../../config.json")
+const { channel_command, language } = require("./../../config.json")
+const lang = require("./../../lang/" + language + ".json")
 
 module.exports = {
 	name: "삭제",
 
 	/** You need to uncomment below properties if you need them. */
-	description: "등록한 뿔피리 알림 키워드를 삭제합니다. 한번에 하나의 키워드만 삭제 할 수 있습니다.",
-	usage: "!삭제 키워드",
+	description: lang.removeDesc,
+	usage: lang.removeExample,
 	cooldown: 1,
 	aliases: ["제거", "-", "remove", "delete", "rm"],
 	permissions: "SEND_MESSAGES",
@@ -49,13 +50,13 @@ module.exports = {
 					// Write appended keyword list to JSON
 					fs.writeFileSync("./commands/bugle/keywordDB.json", JSON.stringify(oldKeyword))
 					message.reply({
-						content: args[0] + " 키워드를 알림 목록에서 삭제했습니다.",
+						content: args[0] + lang.removeSuccess,
 					})
 				} catch (err) {
 					console.error(err)
 				}
 			} else if (removeSuccess == false) {
-				message.reply({ content: "삭제할 키워드가 없습니다." })
+				message.reply({ content: lang.removeUndefined })
 			}
 		}
 	},

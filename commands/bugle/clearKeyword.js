@@ -4,14 +4,15 @@
  * @since 1.0.0
  */
 
-const { channel_command } = require("./../../config.json")
+const { channel_command, language } = require("./../../config.json")
+const lang = require("./../../lang/" + language + ".json")
 
 module.exports = {
 	name: "초기화",
 
 	/** You need to uncomment below properties if you need them. */
-	description: "등록한 모든 뿔피리 알림 키워드를 삭제합니다.",
-	usage: "!초기화",
+	description: lang.clearDesc,
+	usage: lang.clearExample,
 	cooldown: 5,
 	aliases: ["리셋", "reset"],
 	permissions: "SEND_MESSAGES",
@@ -43,12 +44,12 @@ module.exports = {
 				try {
 					// Write appended keyword list to JSON
 					fs.writeFileSync("./commands/bugle/keywordDB.json", JSON.stringify(oldKeyword))
-					message.reply({ content: "키워드 알림을 초기화 했습니다." })
+					message.reply({ content: lang.clearSuccess })
 				} catch (err) {
 					console.error(err)
 				}
 			} else {
-				message.reply({ content: "초기화 실패! 등록된 키워드가 없습니다." })
+				message.reply({ content: lang.clearFail })
 			}
 		}
 	},

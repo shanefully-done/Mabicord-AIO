@@ -4,14 +4,15 @@
  * @since 1.1.0
  */
 
-const { channel_command } = require("./../../config.json")
+const { channel_command, language } = require("./../../config.json")
+const lang = require("./../../lang/" + language + ".json")
 
 module.exports = {
 	name: "추가",
 
 	/** You need to uncomment below properties if you need them. */
-	description: "뿔피리 알림 키워드를 등록합니다. 띄어쓰기로 구분하여 여러 개의 키워드를 등록할 수 있습니다.",
-	usage: "!추가 알림받을키워드",
+	description: lang.addDesc,
+	usage: lang.addExample,
 	cooldown: 1,
 	aliases: ["등록", "+", "add", "touch", "make"],
 	permissions: "SEND_MESSAGES",
@@ -54,7 +55,7 @@ module.exports = {
 							if (oldKeyword[user][j] == newKeyword[user][i]) {
 								dupeCheck = true
 								message.reply({
-									content: newKeyword[user][i] + " 키워드가 이미 등록되어 있습니다.",
+									content: newKeyword[user][i] + lang.addExists,
 								})
 								break
 							} else if (
@@ -64,7 +65,7 @@ module.exports = {
 								newKeyword[user][i] == NaN
 							) {
 								dupeCheck = true
-								message.reply({ content: "키워드 등록 실패 : undefined" })
+								message.reply({ content: lang.addUndefined })
 								break
 							} else {
 								dupeCheck = false
@@ -78,14 +79,14 @@ module.exports = {
 					}
 					fs.writeFileSync("./commands/bugle/keywordDB.json", JSON.stringify(oldKeyword))
 					message.reply({
-						content: newKeyword[user].join(", ") + " 키워드를 알림 목록에 등록했습니다.",
+						content: newKeyword[user].join(", ") + lang.addSuccess,
 					})
 				}
 			} else if (oldKeyword[user] == undefined) {
 				oldKeyword[user] = newKeyword[user]
 				fs.writeFileSync("./commands/bugle/keywordDB.json", JSON.stringify(oldKeyword))
 				message.reply({
-					content: newKeyword[user].join(", ") + " 키워드를 알림 목록에 등록했습니다.",
+					content: newKeyword[user].join(", ") + lang.addSuccess,
 				})
 			}
 		}

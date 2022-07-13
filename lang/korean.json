@@ -24,5 +24,41 @@
 	"raidMokkurkalfi": "모쿠르칼피",
 	"raidSylvanDragon": "실반 드래곤",
 	"raidAlert_1": "3분 후, ",
-	"raidAlert_2": "이(가) 출몰합니다."
+	"raidAlert_2": "이(가) 출몰합니다.",
+
+	"usage": "사용법",
+	"invalidCommand": "유효한 명령어가 아닙니다!",
+	"alias": "대체명령어",
+	"cooldown": "쿨타임",
+	"seconds": "초",
+
+	"help": "도움말",
+	"helpDesc": "모든 명령어를 보거나 특정 명령어의 사용법을 볼 수 있습니다.",
+	"helpUsage1": "[명령어 이름]",
+	"helpUsage2": "명령어를 사용하여 특정 명령어의 사용법을 볼 수 있습니다.",
+	"helpAll": "모든 명령어",
+	"helpSent": "모든 명령어를 DM으로 보냈습니다.",
+	"helpDMFail1": "에게 도움말 DM을 보내는데에 실패했습니다.",
+	"helpDMFail2": "이런! DM을 보낼 수 없습니다!",
+	"helpCommand": "명령어 도움말",
+
+	"addDesc": "뿔피리 알림 키워드를 등록합니다. 띄어쓰기로 구분하여 여러 개의 키워드를 등록할 수 있습니다.",
+	"addExample": "!추가 알림 키워드 띄어쓰기로 구분",
+	"addExists": " 키워드가 이미 등록되어 있습니다.",
+	"addUndefined": "키워드 등록 실패 : undefined",
+	"addSuccess": " 키워드를 알림 목록에 등록했습니다.",
+
+	"removeDesc": "등록한 뿔피리 알림 키워드를 삭제합니다. 한번에 하나의 키워드만 삭제 할 수 있습니다.",
+	"removeExample": "!삭제 키워드",
+	"removeUndefined": "삭제할 키워드가 없습니다.",
+	"removeSuccess": " 키워드를 알림 목록에서 삭제했습니다.",
+
+	"listDesc": "등록한 뿔피리 알림 키워드를 보여줍니다.",
+	"listExample": "!목록",
+	"listEmpty": "등록한 키워드가 없습니다.",
+
+	"clearDesc": "등록한 뿔피리 알림 키워드를 모두 삭제합니다.",
+	"clearExample": "!초기화",
+	"clearSuccess": "키워드 알림을 초기화 했습니다.",
+	"clearFail": "초기화 실패! 등록된 키워드가 없습니다."
 }

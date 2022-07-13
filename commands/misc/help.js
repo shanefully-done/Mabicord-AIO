@@ -6,16 +6,17 @@
  */
 
 // Deconstructing prefix from config file to use in help command
-const { prefix } = require("./../../config.json")
+const { prefix, language } = require("./../../config.json")
+const lang = require("./../../lang/" + language + ".json")
 
 // Deconstructing MessageEmbed to create embeds within this command
 const { MessageEmbed } = require("discord.js")
 
 module.exports = {
-	name: "도움말",
-	description: "모든 명령어를 보거나 특정 명령어의 사용법을 볼 수 있습니다.",
+	name: lang.help,
+	description: lang.helpDesc,
 	aliases: ["help", "commands", "manual", "도움", "명령어", "사용법"],
-	usage: "[command name]",
+	usage: lang.helpUsage1,
 	cooldown: 5,
 
 	execute(message, args) {
@@ -36,8 +37,11 @@ module.exports = {
 				.setDescription("`" + commands.map((command) => command.name).join("`, `") + "`")
 
 				.addField(
-					"사용법",
-					`\n\`${prefix}도움말 [command name]\` 명령어를 사용하여 특정 명령어의 사용법을 볼 수 있습니다.`
+					lang.usage,
+					`\n\`${prefix}\`` +
+						lang.help +
+						" " +
+						lang.helpUsage2
 				)
 
 			// Attempts to send embed in DMs.
@@ -51,15 +55,15 @@ module.exports = {
 					// On validation, reply back.
 
 					message.reply({
-						content: "모든 명령어를 DM으로 보냈습니다.",
+						content: lang.helpSent,
 					})
 				})
 				.catch((error) => {
 					// On failing, throw error.
 
-					console.error(`${message.author.tag}에게 도움말 DM을 보내는데에 실패했습니다.\n`, error)
+					console.error(`${message.author.tag}\n` + lang.helpDMFail, error)
 
-					message.reply({ content: "이런! DM을 보낼 수 없습니다!" })
+					message.reply({ content: lang.helpDMFail2 })
 				})
 		}
 
@@ -77,7 +81,7 @@ module.exports = {
 		// If it's an invalid command.
 
 		if (!command) {
-			return message.reply({ content: "유효한 명령어가 아닙니다!" })
+			return message.reply({ content: langinvalidCommand })
 		}
 
 		/**
@@ -85,15 +89,15 @@ module.exports = {
 		 * @description Embed of Help command for a specific command.
 		 */
 
-		let commandEmbed = new MessageEmbed().setColor(0x4286f4).setTitle("명령어 도움말")
+		let commandEmbed = new MessageEmbed().setColor(0x4286f4).setTitle(lang.helpCommand)
 
 		if (command.description) commandEmbed.setDescription(`${command.description}`)
 
 		if (command.aliases)
 			commandEmbed
-				.addField("대체명령어", `\`${command.aliases.join(", ")}\``, true)
-				.addField("쿨타임", `${command.cooldown || 3} 초`, true)
-		if (command.usage) commandEmbed.addField("사용법", `\`${prefix}${command.name} ${command.usage}\``, true)
+				.addField(lang.alias, `\`${command.aliases.join(", ")}\``, true)
+				.addField(lang.cooldown, `${command.cooldown || 3}` + lang.seconds, true)
+		if (command.usage) commandEmbed.addField(lang.usage, `\`${prefix}${command.name} ${command.usage}\``, true)
 
 		// Finally send the embed.
 

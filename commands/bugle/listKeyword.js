@@ -4,14 +4,15 @@
  * @since 1.0.0
  */
 
-const { channel_command } = require("./../../config.json")
+const { channel_command, language } = require("./../../config.json")
+const lang = require("./../../lang/" + language + ".json")
 
 module.exports = {
 	name: "목록",
 
 	/** You need to uncomment below properties if you need them. */
-	description: "등록한 모든 뿔피리 알림 키워드를 보여줍니다.",
-	usage: "!목록",
+	description: lang.listDesc,
+	usage: lang.listExample,
 	cooldown: 5,
 	aliases: ["리스트", "list", "ls", "l"],
 	permissions: "SEND_MESSAGES",
@@ -43,7 +44,7 @@ module.exports = {
 			if (listKeyword[user] != undefined) {
 				message.reply({ content: listKeyword[user].join(", ") })
 			} else {
-				message.reply({ content: "등록된 키워드가 없습니다." })
+				message.reply({ content: lang.listEmpty })
 			}
 		}
 	},

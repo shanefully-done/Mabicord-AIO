@@ -24,5 +24,41 @@
 	"raidMokkurkalfi": "Mokkurkalfi",
 	"raidSylvanDragon": "Sylvan Dragon",
 	"raidAlert_1": "After 3 minutes, ",
-	"raidAlert_2": " will be spawned."
+	"raidAlert_2": " will be spawned.",
+
+	"usage": "Usage",
+	"invalidCommand": "Invalid command!",
+	"alias": "Aliases",
+	"cooldown": "Cooldown",
+	"seconds": "seconds",
+
+	"help": "help",
+	"helpDesc": "You can see all commands or how to use a specific command.",
+	"helpUsage1": "[command name]",
+	"helpUsage2": "You can use the command to see the usage of a specific command.",
+	"helpAll": "All commands",
+	"helpSent": "All commands sent via DM.",
+	"helpDMFail1": "Failed to send help DM.",
+	"helpDMFail2": "Oh, no! Could not send DM!",
+	"helpCommand": "command help",
+
+	"addDesc": "Register bugle notification keywords. Multiple keywords can be registered by separating them with spaces.",
+	"addExample": "!add notification keywords separated by spaces",
+	"addExists": "The keyword is already registered.",
+	"addUndefined": "Failed to register keyword: undefined",
+	"addSuccess": "successfully added!",
+
+	"removeDesc": "Remove registered bugle notification keyword. Only one keyword can be deleted at a time.",
+	"removeExample": "!remove keyword",
+	"removeUndefined": "No keywords to delete.",
+	"removeSuccess": "Keyword has been removed from the notification list.",
+
+	"listDesc": "Shows registered bugle notification keywords.",
+	"listExample": "!list",
+	"listEmpty": "No keyword has been registered.",
+
+	"clearDesc": "Resets all registered horn notification keywords.",
+	"clearExample": "!reset",
+	"clearSuccess": "You have cleared keyword notifications.",
+	"clearFail": "Failed! No registered keywords found!"
 }
