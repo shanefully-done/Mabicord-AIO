@@ -1,0 +1,28 @@
+{
+	"onReady": " has successfully logged in",
+
+	"checkClient": "Start client checker",
+	"checkClientCron": "Cron: Check if the client is running",
+	"checkClientDown": "Client is down",
+	"checkClientDM": "Client is down",
+	"checkClientDMFail": "Failed to send client down message via DM",
+	"checkClientDMFailSend": "Client is down. (Failed to send message via DM)",
+
+	"bugleLogger": "Start collecting horns",
+	"channel": "[Channel 12]",
+	"raidLion": "Giant Lion",
+	"raidAlligator": "GiantAlligator",
+	"raidSandworm": "Giant Sandworm",
+	"raidRedDragon": "Red Dragon",
+	"raidMammoth": "Mammoth",
+	"raidDesertDragon": "Desert Dragon",
+	"raidYeti": "Yeti",
+	"raidIfrit": "Ifrit",
+	"raidPrairieDragon": "Prairie Dragon",
+	"raidWhiteDragon": "White Dragon",
+	"raidBlackDragon": "Black Dragon",
+	"raidMokkurkalfi": "Mokkurkalfi",
+	"raidSylvanDragon": "Sylvan Dragon",
+	"raidAlert_1": "After 3 minutes, ",
+	"raidAlert_2": " will be spawned."
+}

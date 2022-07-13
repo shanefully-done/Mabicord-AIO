@@ -12,8 +12,10 @@ const {
 	device_address,
 	cap_filter,
 	config,
+	language,
 } = require("./../config.json")
 const { WebhookClient } = require("discord.js")
+const lang = require("./../lang/" + language + ".json")
 
 module.exports = {
 	name: "ready",
@@ -25,7 +27,7 @@ module.exports = {
 	 * @param {import("discord.js").Guild} guild The Guild Object of the command.
 	 */
 	execute(client, guild) {
-		console.log("Bugle Logger started!")
+		console.log(lang.bugleLogger)
 		var Cap = require("cap").Cap
 		var decoders = require("cap").decoders
 		var PROTOCOL = decoders.PROTOCOL
@@ -42,19 +44,19 @@ module.exports = {
 		var linkType = c.open(device, filter, bufSize, buffer)
 
 		let raidType = [
-			"거대 사자",
-			"거대 악어",
-			"거대 샌드웜",
-			"레드 드래곤",
-			"매머드",
-			"사막 드래곤",
-			"예티",
-			"이프리트",
-			"평원 드래곤",
-			"화이트 드래곤",
-			"블랙 드래곤",
-			"모쿠르칼피",
-			"실반 드래곤",
+			lang.raidLion,
+			lang.raidAlligator,
+			lang.raidSandworm,
+			lang.raidRedDragon,
+			lang.raidMammoth,
+			lang.raidDesertDragon,
+			lang.raidYeti,
+			lang.raidIfrit,
+			lang.raidPrairieDragon,
+			lang.raidWhiteDragon,
+			lang.raidBlackDragon,
+			lang.raidMokkurkalfi,
+			lang.raidSylvanDragon,
 		]
 
 		c.setMinBytes && c.setMinBytes(0)
@@ -75,18 +77,18 @@ module.exports = {
 						var bugleClean = rcvStr.substring(rcvStr.indexOf("<ALL_CHANNELS>")).slice(18, -15)
 						var bugleNick = bugleClean.substring(0, bugleClean.indexOf(" : "))
 						var bugleData = bugleClean.substring(bugleClean.indexOf(" : ") + 3)
-						var fieldRaid = rcvStr.substring(rcvStr.indexOf("[채널12]")).slice(7, -11)
+						var fieldRaid = rcvStr.substring(rcvStr.indexOf(lang.channel)).slice(7, -11)
+
+						// Current time
+						let currDate = new Date()
+						let hours = ("0" + currDate.getHours()).slice(-2)
+						let minutes = ("0" + currDate.getMinutes()).slice(-2)
+						let seconds = ("0" + currDate.getSeconds()).slice(-2)
 
 						if (rcvStr.includes("<ALL_CHANNELS>")) {
 							if (bugleData == "NaN" || bugleData == "undefined" || bugleData == NaN || bugleData == undefined) {
 								return
 							}
-
-							// Current time
-							let currDate = new Date()
-							let hours = ("0" + currDate.getHours()).slice(-2)
-							let minutes = ("0" + currDate.getMinutes()).slice(-2)
-							let seconds = ("0" + currDate.getSeconds()).slice(-2)
 
 							// console.log(bugleNick + " : " + bugleData)
 
@@ -158,16 +160,10 @@ module.exports = {
 						}
 
 						// Raid alert
-						if (rcvStr.includes("[채널12]")) {
+						if (rcvStr.includes(lang.channel)) {
 							if (fieldRaid == "NaN" || fieldRaid == "undefined" || fieldRaid == NaN || fieldRaid == undefined) {
 								return
 							}
-
-							// Current time
-							let currDate = new Date()
-							let hours = ("0" + currDate.getHours()).slice(-2)
-							let minutes = ("0" + currDate.getMinutes()).slice(-2)
-							let seconds = ("0" + currDate.getSeconds()).slice(-2)
 
 							// Detect type of raid
 							let fieldType = []
@@ -186,9 +182,11 @@ module.exports = {
 										minutes +
 										":" +
 										seconds +
-										"] 3분 후, " +
+										"] " +
+										lang.raidAlert_1 +
 										fieldType.join(", ") +
-										"이(가) 출몰합니다.\n```"
+										lang.raidAlert_2 +
+										"\n```"
 								)
 							} else if (config.css == false) {
 								channelRaid.send(
@@ -198,9 +196,10 @@ module.exports = {
 										minutes +
 										":" +
 										seconds +
-										"] 3분 후, " +
+										"] " +
+										lang.raidAlert_1 +
 										fieldType.join(", ") +
-										"이(가) 출몰합니다."
+										lang.raidAlert_2
 								)
 							}
 						}

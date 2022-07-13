@@ -1,0 +1,28 @@
+{
+	"onReady": "으로 로그인 성공",
+
+	"checkClient": "클라이언트 체커 시작",
+	"checkClientCron": "Cron: 클라이언트를 동작중인지 확인합니다",
+	"checkClientDown": "클라이언트가 다운되었습니다",
+	"checkClientDM": "클라이언트가 다운되었습니다",
+	"checkClientDMFail": "DM으로 클라이언트 다운 메세지를 보내는데 실패했습니다",
+	"checkClientDMFailSend": "클라이언트가 다운되었습니다. (DM으로 메세지를 보내는데 실패했습니다)",
+
+	"bugleLogger": "뿔피리 수집 시작",
+	"channel": "[채널12]",
+	"raidLion": "거대 사자",
+	"raidAlligator": "거대 악어",
+	"raidSandworm": "거대 샌드웜",
+	"raidRedDragon": "레드 드래곤",
+	"raidMammoth": "매머드",
+	"raidDesertDragon": "사막 드래곤",
+	"raidYeti": "예티",
+	"raidIfrit": "이프리트",
+	"raidPrairieDragon": "평원 드래곤",
+	"raidWhiteDragon": "화이트 드래곤",
+	"raidBlackDragon": "블랙 드래곤",
+	"raidMokkurkalfi": "모쿠르칼피",
+	"raidSylvanDragon": "실반 드래곤",
+	"raidAlert_1": "3분 후, ",
+	"raidAlert_2": "이(가) 출몰합니다."
+}

@@ -2,11 +2,12 @@
  * @file Check Client
  * @author RedPen
  * @since 1.0.0
- * @version 1.1.1
+ * @version 1.1.2
  */
 
 const fs = require("fs")
-const { channel_log, owner } = require("./../config.json")
+const { channel_log, owner, language } = require("./../config.json")
+const lang = require("./../lang/" + language + ".json")
 
 module.exports = {
 	name: "ready",
@@ -21,19 +22,19 @@ module.exports = {
 		const find = require("find-process")
 		const channel = client.channels.cache.get(channel_log)
 
-		console.log("Check Client started!")
+		console.log(lang.checkClient)
 
 		cron.schedule("0 */5 * * * *", () => {
 			const serverStatus = JSON.parse(fs.readFileSync("./events/checkServer.json", "utf8")).status
 			if (serverStatus == true) {
-				console.log("Cron: Check client")
+				console.log(lang.checkClientCron)
 				find("name", "Client.exe", true).then(function (list) {
 					if (list.length == 0) {
-						console.log("Cron: Client is down!")
+						console.log(lang.checkClientDown)
 						return client.users.fetch(owner, false).then((user) => {
-							user.send("<@!" + owner + ">, client is down!").catch((error) => {
-								console.error("Failed to send error message via DM")
-								channel.send("<@!" + owner + ">, client is down! (Failed to send this message via DM)")
+							user.send("<@!" + owner + ">, " + lang.checkClientDM).catch((error) => {
+								console.error(lang.checkClientDMFail)
+								channel.send("<@!" + owner + ">, " + lang.checkClientDMFailSend)
 							})
 						})
 					}
