@@ -81,6 +81,13 @@ module.exports = {
 						var bugleData = bugleClean.substring(bugleClean.indexOf(" : ") + 3)
 						var fieldRaid = rcvStr.substring(rcvStr.indexOf(lang.channel)).slice(7, -11)
 
+						// Clean up bugleData and fieldRaid
+						if (bugleData.includes("\x00")) {
+							bugleData = bugleData.split("\x00")[0]
+						} else if (fieldRaid.includes("\x00")) {
+							fieldRaid = fieldRaid.split("\x00")[0]
+						}
+
 						// Current time
 						let currDate = new Date()
 						let hours = ("0" + currDate.getHours()).slice(-2)
