@@ -1,3 +1,8 @@
+Also available in:
+- [한국어](https://github.com/RixxLx/Mabicord-AIO/blob/master/README_KO.md)
+
+---
+
 # About
 
 Mabicord AIO is a Discord bot that handles MMORPG Mabinogi's raid messages and bugle messages, designed to serve a single Discord server.
@@ -88,7 +93,7 @@ Edit the following options.
 | --- | --- |
 | !help | Sends all commands/help message via DM |
 | !add keyword | Adds a keyword. Add multiple keywords, separated by space. |
-| !remove | Remove a keyword. You can only remove one at a time. |
+| !remove keyword | Remove a keyword. You can only remove one at a time. |
 | !list | Lists currently registered keywords. |
 | !reset | Remove all keywords. |
 
@@ -97,14 +102,14 @@ Edit the following options.
 ## Finding your `device_address`
 
 Use IP address assigned by your router. It is recommended to use static DHCP by configuring in your router settings.  
-If you don't know your IP address issued by your router, you have two options.
+If you don't know your IP address issued by your router, you have three options.
 1. Access your router settings and view which IP it is issuing.
 2. In Windows network settings, find IPv4 address under `Hardware properties` of your network device.
 3. Run `node deviceList.js` to confirm and use the `addr` assigned by your router.
 
-## What are the `cap_filter` values for my server?
+## What are the `cap_filter` values for my game server?
 
-If you have configured `device_address` correctly, running `node findChannel.js` will log valid IP address and data if it includes `<ALL_CHANNELS>` in the message while running Mabinogi.  
+If you have configured `device_address` correctly, running `node findChannel.js` will log valid Channel IP address and data to the terminal if it includes `<ALL_CHANNELS>` in the message while running Mabinogi.  
 If you have successfully logged your channel IP, log all IP addresses by channel hopping. To make the process faster, you may send bugle messages yourself.  
 Once you have collected all IP addresses, find common value and substitute `211.218.233` appropriately. Leaving out values will automatically match source IP partially.
 
@@ -112,3 +117,4 @@ Once you have collected all IP addresses, find common value and substitute `211.
 
 Feel free to contribute via issues or pull requests!  
 If you need to contact me, reach out at Lx#2909 on Discord.
+
